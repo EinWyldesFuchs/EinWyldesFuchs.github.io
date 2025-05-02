@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EinWyldesFuchs | Minecraft Content Creator</title>
+    <style>
+        :root {
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --accent: #ff6b2b;
+            --accent-light: #ff8f5e;
+            --text: #ffffff;
+            --text-secondary: #aaaaaa;
+            --card-bg: #1e1e1e;
+            --border-radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--darker-bg);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background-color: var(--darker-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 107, 43, 0.1), rgba(0, 0, 0, 0));
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text);
+            border: 1px solid var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Latest Videos Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--darker-bg);
+            border-radius: var(--border-radius);
+            padding: 60px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+        }
+
+        /* Minecraft Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        /* Contact/Social Section */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text);
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-10px);
+            color: var(--accent);
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 24px;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-link:hover .social-icon {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+            }
+
+            .about {
+                padding: 30px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <div class="logo-icon">🦊</div>
+            <span>EinWyldesFuchs</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#videos">Videos</a>
+            <a href="#about">Über Mich</a>
+            <a href="#projects">Projekte</a>
+        </nav>
+        <div class="mobile-menu">☰</div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h1>Minecraft Abenteuer<br>mit <span style="color: var(--accent);">EinWyldesFuchs</span></h1>
+            <p>Entdecke epische Builds, spannende Let's Plays und hilfreiche Tutorials zu Minecraft - abonniere jetzt und sei Teil meiner Community!</p>
+            <div class="hero-buttons">
+                <a href="https://www.youtube.com/c/EinWyldesFuchs" target="_blank" class="btn btn-primary">Kanal abonnieren</a>
+                <a href="#videos" class="btn btn-secondary">Neueste Videos</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="/api/placeholder/600/400" alt="Minecraft Szene">
+        </div>
+    </div>
+</section>
+
+<section class="section" id="videos">
+    <div class="container">
+        <div class="section-header">
+            <h2>Neueste Videos</h2>
+            <p>Schau dir meine aktuellsten Minecraft-Abenteuer an und bleib immer auf dem Laufenden!</p>
+        </div>
+        <div class="videos-grid">
+            <a href="https://www.youtube.com/watch?v=video1" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="/api/placeholder/400/225" alt="Video Thumbnail">
+                    <div class="video-duration">14:23</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Mein neuer Megabau: Waldschloss im Survival</h3>
+                    <div class="video-meta">
+                        <span>24.532 Aufrufe</span>
+                        <span>Vor 3 Tagen</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=video2" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="/api/placeholder/400/225" alt="Video Thumbnail">
+                    <div class="video-duration">22:45</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Die effizienteste XP-Farm für 1.20</h3>
+                    <div class="video-meta">
+                        <span>18.276 Aufrufe</span>
+                        <span>Vor 1 Woche</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=video3" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="/api/placeholder/400/225" alt="Video Thumbnail">
+                    <div class="video-duration">17:38</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">5 geheime Tricks für Redstone-Meister</h3>
+                    <div class="video-meta">
+                        <span>32.149 Aufrufe</span>
+                        <span>Vor 2 Wochen</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="about">
+    <div class="container">
+        <div class="about">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/api/placeholder/500/500" alt="EinWyldesFuchs Avatar">
+                </div>
+                <div class="about-text">
+                    <h2>Über Mich</h2>
+                    <p>Hallo, ich bin EinWyldesFuchs - ein leidenschaftlicher Minecraft-Spieler und Content Creator. Seit 2018 teile ich meine Bauprojekte, Tutorials und Survival-Abenteuer mit euch.</p>
+                    <p>Mein Ziel ist es, inspirierende Inhalte zu erstellen, die sowohl unterhalten als auch hilfreich sind. Von gigantischen Build-Projekten bis hin zu detaillierten Redstone-Tutorials - hier findet jeder Minecraft-Fan etwas Spannendes!</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">230K</div>
+                            <div class="stat-label">Abonnenten</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">350+</div>
+                            <div class="stat-label">Videos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12M+</div>
+                            <div class="stat-label">Aufrufe</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="projects">
+    <div class="container">
+        <div class="section-header">
+            <h2>Meine Minecraft-Projekte</h2>
+            <p>Entdecke meine besten Builds und längsten Serien auf dem Kanal</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="/api/placeholder/400/225" alt="Survival Series">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Fuchs-Survival</h3>
+                    <p class="project-description">Meine Hauptserie mit über 150 Folgen. Von der ersten Nacht bis zum End-Drachen und darüber hinaus!</p>
+                    <a href="https://www.youtube.com/playlist?list=PLxxx123456" target="_blank" class="project-link">Zur Playlist →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="/api/placeholder/400/225" alt="Mittelalterstadt">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Mittelalterstadt Fuchsheim</h3>
